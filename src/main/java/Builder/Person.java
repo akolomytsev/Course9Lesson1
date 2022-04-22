@@ -5,49 +5,81 @@ import lombok.Data;
 
 @Data
 public class Person {
-    private final String firstName;
-    private final String lastName;
-    private final String middleName;
-    private final String country;
-    private final String address;
-    private final String phone;
-    private final int age;
-    private final String gender;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private String country;
+    private String address;
+    private String phone;
+    private int age;
+    private String gender;
+
+    public Person() {
+    }
 
     public static class Builder {
-        private final String firstName;
-        private final String lastName;
-        private final String middleName;
-        private final String country;
-        private final String address;
-        private final String phone;
-        private final int age;
-        private final String gender;
+        private Person newPerson;
 
-        //С учетом что все поля обязательные
-        public Builder(String firstName, String lastName, String middleName, String country, String address, String phone, int age, String gender) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.middleName = middleName;
-            this.country = country;
-            this.address = address;
-            this.phone = phone;
-            this.age = age;
-            this.gender = gender;
+        public Builder() {
+            newPerson = new Person();
+        }
+
+        public Builder withFirstName(String firstName){
+            newPerson.firstName = firstName;
+            return this;
+        }
+
+        public Builder withLastName(String lastName){
+            newPerson.lastName = lastName;
+            return this;
+        }
+
+        public Builder withMiddleName(String middleName){
+            newPerson.middleName = middleName;
+            return this;
+        }
+
+        public Builder withCountry(String country){
+            newPerson.country = country;
+            return this;
+        }
+
+        public Builder withAddress(String address){
+            newPerson.address = address;
+            return this;
+        }
+
+        public Builder withPhone(String phone){
+            newPerson.phone = phone;
+            return this;
+        }
+
+        public Builder withAge(int age){
+            newPerson.age = age;
+            return this;
+        }
+
+        public Builder withGender(String gender){
+            newPerson.gender = gender;
+            return this;
         }
 
         public Person build(){
-            return new Person(this);
+            return newPerson;
         }
     }
-    public Person(Builder.Person.Builder builder) {
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        middleName = builder.middleName;
-        country = builder.country;
-        address = builder.address;
-        phone = builder.phone;
-        age = builder.age;
-        gender = builder.gender;
+
+    public static void main(String[] args) {
+            Person newPerson = new Builder()
+                    .withFirstName("ljc")
+                    .withLastName("fekfguh")
+                    .withMiddleName("kjfvh")
+                    .withCountry("ksjfv")
+
+                    .withPhone("hjbkdvkvkjvbkj")
+                    .withAge(12)
+                    .withGender("w")
+                    .build();
+        System.out.println(String.valueOf(newPerson));
     }
 }
